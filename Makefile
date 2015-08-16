@@ -1,9 +1,16 @@
-all : init
+GOBUILD=go build
 
-init: init.go
-	go build init.go
+EXE=init add
+
+all : $(EXE)
+
+init: main/init.go
+	$(GOBUILD) $<
+
+add: main/add.go blob.go
+	$(GOBUILD) $<
 
 clean:
-	go clean
+	rm $(EXE)
 
 .PHONY : clean
