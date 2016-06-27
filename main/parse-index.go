@@ -8,9 +8,14 @@ import (
 )
 
 func main() {
-	file, err := os.Open("index")
+	if len(os.Args) != 2 {
+		fmt.Println("usage: parse-index index_file")
+		return
+	}
+	file, err := os.Open(os.Args[1])
 	if err != nil {
-		fmt.Println("open index file error")
+		fmt.Println(err)
+		return
 	}
 	defer file.Close()
 
@@ -18,6 +23,7 @@ func main() {
 	flags := make([]byte, 2)
 	b := make([]byte, 4)
 
+	fmt.Println("============================")
 	// header
 	file.Read(b)
 	fmt.Printf("signature: %s\n", b)
@@ -28,7 +34,7 @@ func main() {
 	n := binary.BigEndian.Uint32(b)
 	fmt.Println("entries no.:", n)
 
-	//entries, only parse version 2
+	// entries, only parse version 2
 	fmt.Println("============================")
 	for i := uint32(0); i < n; i++ {
 		fmt.Println("----------------------")
