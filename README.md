@@ -1,7 +1,10 @@
 # Dit
-the simple content tracker as Git does
+
+The simple content tracker as Git does.
+
 
 ## Why
-* learn more about git;
-* "do it together", hope more guys participate in.
 
+* "Do it together", hope more guys participate in.
+* Learn more about Git;
+* Learn more about Golang;
