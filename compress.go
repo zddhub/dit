@@ -9,7 +9,7 @@ import (
 // Use Go default zlib implements, different with Git
 
 // compress data to path file
-func Compress(data []byte, path string) {
+func Compress(path string, data []byte) {
 	dir := filepath.Dir(path)
 	os.MkdirAll(dir, os.ModePerm)
 
@@ -27,7 +27,7 @@ func Compress(data []byte, path string) {
 }
 
 // uncompress file to data
-func Uncompress(path string, data []byte) {
+func Uncompress(data []byte, path string) {
 	file, err := os.Open(path)
 	if err != nil {
 		LogE.Fatalln(err)

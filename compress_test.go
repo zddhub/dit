@@ -5,12 +5,12 @@ import (
 )
 
 // Test compress and uncompress algorithm
-func TestZlib(t *testing.T) {
+func TestCompress(t *testing.T) {
 	data := []byte("blob 4\x00dit\n")
-	Compress(data, "tests/zlib_test")
+	Compress("testdata/compress_test", data)
 
 	buffer := make([]byte, len(data))
-	Uncompress("tests/zlib_test", buffer)
+	Uncompress(buffer, "testdata/compress_test")
 
 	if string(buffer) != string(data) {
 		t.Error("compress and uncompress error")
