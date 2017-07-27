@@ -1,4 +1,4 @@
-package dit
+package compress
 
 import (
 	"testing"

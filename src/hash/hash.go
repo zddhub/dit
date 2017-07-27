@@ -1,9 +1,10 @@
-package dit
+package hash
 
 import (
 	"crypto/sha1"
 	"fmt"
 	"os"
+	. "utils"
 )
 
 // sha1

@@ -2,13 +2,14 @@ GOBUILD=go build
 
 BIN=bin
 EXE=init add
+SRC=src
 
 all : $(EXE)
 
-init: main/init.go repository.go dit.go
+init: $(SRC)/main/init.go $(SRC)/dit/repository.go $(SRC)/dit/dit.go
 	$(GOBUILD) -o $(BIN)/init $<
 
-add: main/add.go blob.go
+add: $(SRC)/main/add.go $(SRC)/dit/blob.go
 	$(GOBUILD) -o $(BIN)/add $<
 
 clean:

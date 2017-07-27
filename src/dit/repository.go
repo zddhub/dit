@@ -3,6 +3,7 @@ package dit
 import (
 	"os"
 	"path/filepath"
+	. "utils"
 )
 
 type Repository interface {

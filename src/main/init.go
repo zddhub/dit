@@ -1,7 +1,7 @@
 package main
 
 import (
-	. "github.com/zddhub/dit"
+	. "dit"
 )
 
 func main() {

@@ -1,4 +1,4 @@
-package dit
+package hash
 
 import (
 	"os/exec"
@@ -14,7 +14,7 @@ func TestHashFromMemory(t *testing.T) {
 }
 
 func TestHashFromFile(t *testing.T) {
-	cmd := exec.Command("bash", "-c", "echo -e 'blob 4\\0dit' > testdata/dit")
+	cmd := exec.Command("bash", "-c", "mkdir -p testdata; echo -e 'blob 4\\0dit' > testdata/dit")
 	cmd.Run()
 
 	sha1, _ := FileHash("testdata/dit")

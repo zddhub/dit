@@ -1,8 +1,8 @@
 package main
 
 import (
+	. "dit"
 	"flag"
-	. "github.com/zddhub/dit"
 )
 
 func main() {

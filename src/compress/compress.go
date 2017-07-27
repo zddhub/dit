@@ -1,9 +1,10 @@
-package dit
+package compress
 
 import (
 	"compress/zlib"
 	"os"
 	"path/filepath"
+	. "utils"
 )
 
 // Use Go default zlib implements, different with Git
