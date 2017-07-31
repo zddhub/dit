@@ -3,6 +3,7 @@ GOBUILD=go build
 BIN=bin
 EXE=init add
 SRC=src
+PKG_SRC=github.com/zddhub/dit/src
 
 all : $(EXE)
 
@@ -14,5 +15,10 @@ add: $(SRC)/main/add.go $(SRC)/dit/blob.go
 
 clean:
 	rm -rf $(BIN)
+
+test:
+	go test $(PKG_SRC)/compress \
+			$(PKG_SRC)/hash \
+			$(PKG_SRC)/dit
 
 .PHONY : clean
