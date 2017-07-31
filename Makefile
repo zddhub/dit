@@ -17,8 +17,9 @@ clean:
 	rm -rf $(BIN)
 
 test:
-	go test $(PKG_SRC)/compress \
-			$(PKG_SRC)/hash \
-			$(PKG_SRC)/dit
+	go test -v \
+		$(PKG_SRC)/compressor \
+		$(PKG_SRC)/hash \
+		$(PKG_SRC)/dit
 
 .PHONY : clean
