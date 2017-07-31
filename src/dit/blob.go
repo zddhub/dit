@@ -54,14 +54,14 @@ func (b *Blob) Hash(filePath string) {
 	header := "blob " + strconv.FormatInt(fileInfo.Size(), 10) + "\x00"
 	sha1Buffer := append([]byte(header), buffer...)
 
-	b.sha1 = fmt.Sprintf("%x", sha1.Sum(sha1Buffer))
-	b.size = fileInfo.Size()
-	b.type_ = "blob"
-	b.parsed = true
-	b.used = true
+	b.sha1 = sha1.Sum(sha1Buffer)
+	// b.size = fileInfo.Size()
+	// b.type_ = "blob"
+	// b.parsed = true
+	// b.used = true
 
 	// zlib and write
-	writeToObject(sha1Buffer, b.sha1)
+	writeToObject(sha1Buffer, string(b.sha1[:]))
 
 	fmt.Printf("sha1: %s\n", b.sha1)
 }

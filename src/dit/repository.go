@@ -15,10 +15,6 @@ func CreateRepository() *repository {
 	return repo
 }
 
-const (
-	DIT_REPO_DIR = ".dit"
-)
-
 // dit repository
 type repository struct {
 	dir           string
