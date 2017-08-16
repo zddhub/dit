@@ -1,15 +1,18 @@
 package dit
 
 import (
-	"crypto/sha1"
 	"os"
 	"testing"
 )
 
 func TestWriteAndReadObject(t *testing.T) {
 	data := []byte("dit\n")
-	object := object{flag: "blob", sha1: sha1.Sum(data)}
+	object := object{flag: "blob"}
 	object.Write(data)
+
+	if object.Sha1String() != "8f2c96ad676d7423d2c319fffb78cfb87c78c3e2" {
+		t.Error("sum sha1 error when write object")
+	}
 
 	object.flag = ""
 
@@ -22,7 +25,7 @@ func TestWriteAndReadObject(t *testing.T) {
 
 	filePath := DIT_REPO_DIR + "/objects/" + string(object.Sha1String()[:2]) + "/" + object.Sha1String()[2:]
 	if _, err := os.Stat(filePath); err != nil {
-		t.Error("write and read object error")
+		t.Error("write object to repo error")
 	}
 
 	os.RemoveAll(DIT_REPO_DIR)

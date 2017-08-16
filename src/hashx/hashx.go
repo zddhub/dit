@@ -1,4 +1,4 @@
-package hash
+package hashx
 
 import (
 	"crypto/sha1"
@@ -7,12 +7,18 @@ import (
 	. "utils"
 )
 
+const Size = 20
+
 // sha1
-func MemHash(data []byte) string {
-	return fmt.Sprintf("%x", sha1.Sum(data))
+func MemHashToBytes(data []byte) [Size]byte {
+	return sha1.Sum(data)
 }
 
-func FileHash(path string) (string, error) {
+func MemHashToString(data []byte) string {
+	return fmt.Sprintf("%x", MemHashToBytes(data))
+}
+
+func FileHash(path string) (sha1 string, err error) {
 	fileInfo, err := os.Stat(path)
 	if err != nil && !os.IsExist(err) {
 		LogE.Println(err)
@@ -31,5 +37,6 @@ func FileHash(path string) (string, error) {
 		LogE.Fatalln(err)
 		return "", err
 	}
-	return MemHash(buffer), nil
+	fmt.Println(buffer)
+	return MemHashToString(buffer), nil
 }

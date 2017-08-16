@@ -3,6 +3,7 @@ package dit
 import (
 	"compressor"
 	"fmt"
+	"hashx"
 	"os"
 )
 
@@ -17,12 +18,15 @@ func (o *object) Sha1String() string {
 
 func (o *object) Write(p []byte) (n int, err error) {
 	header := []byte(fmt.Sprintf("%s %d\x00", o.flag, len(p)))
+	data := append(header, p...)
+	o.sha1 = hashx.MemHash(data)
+
 	sha1String := o.Sha1String()
 
 	fileDir := DIT_REPO_DIR + "/objects/" + sha1String[0:2]
 	filePath := fileDir + "/" + sha1String[2:]
 
-	return compressor.Compress(filePath, append(header, p...))
+	return compressor.Compress(filePath, data)
 }
 
 func (o *object) Read(b []byte) (n int, err error) {
@@ -39,7 +43,7 @@ func (o *object) Read(b []byte) (n int, err error) {
 	}
 
 	// TODO: Actually fileSize is larger then buf size
-	buf := make([]byte, int(fileSize))
+	buf := make([]byte, fileSize)
 	n, err = compressor.Uncompress(buf, filePath)
 
 	flag, size := "", 0
