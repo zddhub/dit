@@ -1,10 +1,10 @@
-package compressor
+package compress
 
 import (
 	"compress/zlib"
+	. "github.com/zddhub/dit/utils"
 	"os"
 	"path/filepath"
-	. "utils"
 )
 
 // Use Go default zlib implements, different with Git

@@ -1,4 +1,4 @@
-package hashx
+package hash
 
 import (
 	"os/exec"

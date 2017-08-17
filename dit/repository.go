@@ -1,9 +1,9 @@
 package dit
 
 import (
+	. "github.com/zddhub/dit/utils"
 	"os"
 	"path/filepath"
-	. "utils"
 )
 
 type Repository interface {

@@ -3,7 +3,7 @@ GOBUILD=go build
 BIN=bin
 EXE=init add
 SRC=src
-PKG_SRC=github.com/zddhub/dit/src
+PKG_SRC=github.com/zddhub/dit
 
 all : $(EXE)
 
@@ -18,7 +18,7 @@ clean:
 
 test:
 	go test -v \
-		$(PKG_SRC)/compressor \
+		$(PKG_SRC)/compress \
 		$(PKG_SRC)/hash \
 		$(PKG_SRC)/dit
 

@@ -1,10 +1,10 @@
-package hashx
+package hash
 
 import (
 	"crypto/sha1"
 	"fmt"
+	. "github.com/zddhub/dit/utils"
 	"os"
-	. "utils"
 )
 
 const Size = 20
@@ -37,6 +37,5 @@ func FileHash(path string) (sha1 string, err error) {
 		LogE.Fatalln(err)
 		return "", err
 	}
-	fmt.Println(buffer)
 	return MemHashToString(buffer), nil
 }

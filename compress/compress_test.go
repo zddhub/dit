@@ -1,4 +1,4 @@
-package compressor
+package compress
 
 import (
 	"testing"
