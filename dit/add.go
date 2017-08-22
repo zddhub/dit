@@ -1,16 +1,16 @@
 package dit
 
 import (
-// "hash"
+	. "github.com/zddhub/dit/utils"
 )
 
-// func (r *repository) addFileToObjects(filePath string) (obj *object, err error) {
-// 	obj = object{flag: "blob"}
-// 	if sha1, err := hash.FileHash(filePath); err == nil {
-// 		return nil, err
-// 	} else {
-// 		obj.sha1 = sha1
-// 	}
+func AddFileToObjects(filePath string) (obj *object, err error) {
+	buffer, err := ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
 
-// 	obj.Write()
-// }
+	object := &object{flag: "blob"}
+	object.Write(buffer)
+	return object, err
+}
