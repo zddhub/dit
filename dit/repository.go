@@ -10,8 +10,8 @@ type Repository interface {
 	Init()
 }
 
-func CreateRepository() *repository {
-	repo := &repository{dir: ".", isInitialized: false}
+func NewRepository() *repository {
+	repo := &repository{dir: DEFAULT_REPO_PATH, isInitialized: false}
 	return repo
 }
 

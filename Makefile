@@ -2,15 +2,14 @@ GOBUILD=go build
 
 BIN=bin
 EXE=init add
-SRC=src
 PKG_SRC=github.com/zddhub/dit
 
 all : $(EXE)
 
-init: $(SRC)/main/init.go $(SRC)/dit/repository.go $(SRC)/dit/dit.go
+init: main/init.go dit/repository.go dit/dit.go
 	$(GOBUILD) -o $(BIN)/init $<
 
-add: $(SRC)/main/add.go $(SRC)/dit/blob.go
+add: main/add.go dit/blob.go
 	$(GOBUILD) -o $(BIN)/add $<
 
 clean:

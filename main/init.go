@@ -1,10 +1,10 @@
 package main
 
 import (
-	. "dit"
+	. "github.com/zddhub/dit/dit"
 )
 
 func main() {
-	repo := CreateRepository()
+	repo := NewRepository()
 	repo.Init()
 }
