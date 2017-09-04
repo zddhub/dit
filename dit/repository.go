@@ -8,6 +8,7 @@ import (
 
 type Repository interface {
 	Init()
+	AddFiles()
 }
 
 func NewRepository() *repository {

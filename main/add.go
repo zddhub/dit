@@ -7,8 +7,6 @@ import (
 
 func main() {
 	flag.Parse()
-
-	for _, file := range flag.Args() {
-		AddFileToObjects(file)
-	}
+	repo := NewRepository()
+	repo.AddFiles(flag.Args()...)
 }

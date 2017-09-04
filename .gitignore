@@ -3,3 +3,5 @@ testdata
 a
 bin
 pkg
+.tags
+tags

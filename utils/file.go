@@ -1,14 +1,19 @@
 package utils
 
 import (
+	"fmt"
 	"os"
 )
 
 func ReadFile(path string) (buffer []byte, err error) {
 	fileInfo, err := os.Stat(path)
 	if err != nil && !os.IsExist(err) {
-		LogE.Println(err)
+		LogE.Println(err, fileInfo.IsDir())
 		return nil, err
+	}
+
+	if fileInfo.IsDir() {
+		return nil, fmt.Errorf("file: %s is directory", path)
 	}
 
 	file, err := os.Open(path)
