@@ -4,15 +4,14 @@ import (
 	"testing"
 )
 
-// Test compress and uncompress algorithm
+// Test compress and decompress algorithm
 func TestCompress(t *testing.T) {
 	data := []byte("blob 4\x00dit\n")
 	Compress("../testdata/compress_test", data)
 
-	buffer := make([]byte, len(data))
-	Uncompress(buffer, "../testdata/compress_test")
+	buffer, err := Decompress("../testdata/compress_test")
 
-	if string(buffer) != string(data) {
-		t.Error("compress and uncompress error")
+	if err != nil || string(buffer) != string(data) {
+		t.Error(buffer, "compress and decompress error")
 	}
 }

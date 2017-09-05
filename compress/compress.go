@@ -3,6 +3,7 @@ package compress
 import (
 	"compress/zlib"
 	. "github.com/zddhub/dit/utils"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 )
@@ -17,7 +18,7 @@ func Compress(path string, data []byte) (int, error) {
 	file, err := os.Create(path)
 	if err != nil {
 		LogE.Fatalln(err)
-		return -1, err
+		return 0, err
 	}
 	defer file.Close()
 
@@ -27,21 +28,21 @@ func Compress(path string, data []byte) (int, error) {
 	return w.Write(data)
 }
 
-// uncompress file to data
-func Uncompress(data []byte, path string) (int, error) {
+// Decompress file
+func Decompress(path string) ([]byte, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		LogE.Fatalln(err)
-		return -1, err
+		return nil, err
 	}
 	defer file.Close()
 
 	r, err := zlib.NewReader(file)
 	if err != nil {
 		LogE.Fatalln("Read file error!")
-		return -1, err
+		return nil, err
 	}
-	r.Close()
+	defer r.Close()
 
-	return r.Read(data)
+	return ioutil.ReadAll(r)
 }
