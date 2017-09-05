@@ -14,7 +14,6 @@ func MemHashToBytes(data []byte) [Size]byte {
 }
 
 func MemHashToString(data []byte) string {
-	fmt.Println(MemHashToBytes(data))
 	return fmt.Sprintf("%x", MemHashToBytes(data))
 }
 

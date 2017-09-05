@@ -8,7 +8,7 @@ import (
 func ReadFile(path string) (buffer []byte, err error) {
 	fileInfo, err := os.Stat(path)
 	if err != nil && !os.IsExist(err) {
-		LogE.Println(err, fileInfo.IsDir())
+		LogE.Println(err)
 		return nil, err
 	}
 
