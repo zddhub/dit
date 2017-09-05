@@ -13,7 +13,7 @@ type object struct {
 }
 
 func (o *object) Sha1String() string {
-	return fmt.Sprintf("%x", o.sha1)
+	return BytesToSha1(o.sha1)
 }
 
 func (o *object) Write(p []byte) (n int, err error) {
@@ -55,4 +55,24 @@ func (o *object) Read(b []byte) (n int, err error) {
 	copy(b, buf[nf:n])
 
 	return n, err
+}
+
+func BytesToSha1(bytes [20]byte) (sha1 string) {
+	return fmt.Sprintf("%x", bytes)
+}
+
+func Sha1ToBytes(sha1 string) (bytes [20]byte) {
+	for i := range bytes {
+		bytes[i] = htob(sha1[2*i])*16 + htob(sha1[2*i+1])
+	}
+	return bytes
+}
+
+func htob(hex byte) (b byte) {
+	if hex <= '9' {
+		b = hex - '0'
+	} else {
+		b = hex - 'a' + 10
+	}
+	return b
 }

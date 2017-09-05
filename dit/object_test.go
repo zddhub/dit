@@ -5,12 +5,18 @@ import (
 	"testing"
 )
 
+var (
+	// treated as constants
+	Sha1_Bytes  = [20]byte{143, 44, 150, 173, 103, 109, 116, 35, 210, 195, 25, 255, 251, 120, 207, 184, 124, 120, 195, 226}
+	Sha1_String = "8f2c96ad676d7423d2c319fffb78cfb87c78c3e2"
+)
+
 func TestWriteAndReadObject(t *testing.T) {
 	data := []byte("dit\n")
 	object := object{flag: "blob"}
 	object.Write(data)
 
-	if object.Sha1String() != "8f2c96ad676d7423d2c319fffb78cfb87c78c3e2" {
+	if object.Sha1String() != Sha1_String {
 		t.Error(object.Sha1String())
 		t.Error("sum sha1 error when write object")
 	}
@@ -36,4 +42,16 @@ func TestWriteAndReadObject(t *testing.T) {
 	}
 
 	os.RemoveAll(DIT_REPO_DIR)
+}
+
+func TestBytesToSha1(t *testing.T) {
+	if BytesToSha1(Sha1_Bytes) != Sha1_String {
+		t.Error("BytesToSha1 error")
+	}
+}
+
+func TestSha1ToBytes(t *testing.T) {
+	if Sha1ToBytes(Sha1_String) != Sha1_Bytes {
+		t.Error("Sha1ToBytes error")
+	}
 }
