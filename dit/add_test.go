@@ -6,7 +6,7 @@ import (
 )
 
 func TestAddFileToObjects(t *testing.T) {
-	cmd := exec.Command("bash", "-c", "mkdir -p testdata; echo 'dit' > ../testdata/dit")
+	cmd := exec.Command("bash", "-c", "mkdir -p ../testdata; echo 'dit' > ../testdata/dit")
 	cmd.Run()
 
 	object, _ := addFileToObjects("../testdata/dit")

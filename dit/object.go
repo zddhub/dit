@@ -24,8 +24,7 @@ func (o *object) Write(p []byte) (n int, err error) {
 
 	sha1String := o.Sha1String()
 
-	fileDir := DIT_REPO_DIR + "/objects/" + sha1String[0:2]
-	filePath := fileDir + "/" + sha1String[2:]
+	filePath := DIT["objects"] + "/" + sha1String[0:2] + "/" + sha1String[2:]
 
 	return compress.Compress(filePath, data)
 }
@@ -33,8 +32,7 @@ func (o *object) Write(p []byte) (n int, err error) {
 func (o *object) ReadAll() ([]byte, error) {
 	sha1String := o.Sha1String()
 
-	fileDir := DIT_REPO_DIR + "/objects/" + sha1String[0:2]
-	filePath := fileDir + "/" + sha1String[2:]
+	filePath := DIT["objects"] + "/" + sha1String[0:2] + "/" + sha1String[2:]
 
 	buf, err := compress.Decompress(filePath)
 	if err != nil {

@@ -12,28 +12,27 @@ type Repository interface {
 }
 
 func NewRepository() *repository {
-	repo := &repository{dir: DEFAULT_REPO_PATH, isInitialized: false}
+	repo := &repository{isInitialized: false}
 	return repo
 }
 
 // dit repository
 type repository struct {
-	dir           string
 	isInitialized bool
 }
 
 func (r *repository) Init() {
-	absRepoDir, err := filepath.Abs(r.dir + "/" + DIT_REPO_DIR)
+	absRepoDir, err := filepath.Abs(DIT["dir"])
 
-	if err == nil && isExist(absRepoDir+"/HEAD") {
+	if err == nil && isExist(DIT["HEAD"]) {
 		r.isInitialized = true
 		LogT.Println("Reinitialized empty Dit repository in", absRepoDir)
 		return
 	}
 
-	createDir(absRepoDir + "/objects")
-	createDir(absRepoDir + "/refs/heads")
-	file, err := safeCreateFile(absRepoDir + "/HEAD")
+	createDir(DIT["objects"])
+	createDir(DIT["refs"] + "/heads")
+	file, err := safeCreateFile(DIT["HEAD"])
 	if err != nil {
 		LogE.Fatalln(err)
 	}

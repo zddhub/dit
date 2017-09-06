@@ -20,7 +20,7 @@ func TestWriteAndReadObject(t *testing.T) {
 		t.Error("sum sha1 error when write object")
 	}
 
-	filePath := DIT_REPO_DIR + "/objects/" + string(object.Sha1String()[:2]) + "/" + object.Sha1String()[2:]
+	filePath := DIT["objects"] + "/" + object.Sha1String()[:2] + "/" + object.Sha1String()[2:]
 	if _, err := os.Stat(filePath); err != nil {
 		t.Error("write object to repo error")
 	}
@@ -45,7 +45,7 @@ func TestWriteAndReadObject(t *testing.T) {
 		}
 	}
 
-	os.RemoveAll(DIT_REPO_DIR)
+	os.RemoveAll(DIT["dir"])
 }
 
 func TestBytesToSha1(t *testing.T) {

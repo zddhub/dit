@@ -1,11 +1,7 @@
 package dit
 
-import (
-	"fmt"
-)
-
-func (repo *repository) CatFile(sha1 string) {
+func (repo *repository) CatFile(sha1 string) (*object, []byte, error) {
 	object := &object{sha1: Sha1ToBytes(sha1)}
-	buffer, _ := object.ReadAll()
-	fmt.Printf("%s", buffer)
+	buffer, err := object.ReadAll()
+	return object, buffer, err
 }
