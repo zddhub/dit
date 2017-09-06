@@ -6,7 +6,6 @@ import (
 
 func (repo *repository) CatFile(sha1 string) {
 	object := &object{sha1: Sha1ToBytes(sha1)}
-	buffer := make([]byte, 512)
-	object.Read(buffer)
+	buffer, _ := object.ReadAll()
 	fmt.Printf("%s", buffer)
 }

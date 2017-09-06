@@ -17,22 +17,26 @@ func TestWriteAndReadObject(t *testing.T) {
 	object.Write(data)
 
 	if object.Sha1String() != Sha1_String {
-		t.Error(object.Sha1String())
 		t.Error("sum sha1 error when write object")
-	}
-
-	object.flag = ""
-
-	buffer := make([]byte, len(data))
-	object.Read(buffer)
-
-	if object.flag != "blob" {
-		t.Error("read object type error")
 	}
 
 	filePath := DIT_REPO_DIR + "/objects/" + string(object.Sha1String()[:2]) + "/" + object.Sha1String()[2:]
 	if _, err := os.Stat(filePath); err != nil {
 		t.Error("write object to repo error")
+	}
+
+	// Read
+	object.flag = ""
+	object.size = 0
+
+	buffer, err := object.ReadAll()
+
+	if err != nil || object.flag != "blob" || object.size != 4 {
+		t.Error("read object info error: ", err)
+	}
+
+	if len(buffer) != len(data) {
+		t.Error("read object buffer error")
 	}
 
 	for i := range buffer {

@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"github.com/zddhub/dit/compress"
 	"github.com/zddhub/dit/hash"
-	"os"
 )
 
 type object struct {
 	sha1 [20]byte
 	flag string // object category: object, blob, tree, commit, tag
+	size int
 }
 
 func (o *object) Sha1String() string {
@@ -30,31 +30,21 @@ func (o *object) Write(p []byte) (n int, err error) {
 	return compress.Compress(filePath, data)
 }
 
-func (o *object) Read(b []byte) (n int, err error) {
+func (o *object) ReadAll() ([]byte, error) {
 	sha1String := o.Sha1String()
 
 	fileDir := DIT_REPO_DIR + "/objects/" + sha1String[0:2]
 	filePath := fileDir + "/" + sha1String[2:]
 
-	var fileSize int64
-	if fileInfo, err := os.Stat(filePath); err == nil {
-		fileSize = fileInfo.Size()
-	} else {
-		return -1, err
+	buf, err := compress.Decompress(filePath)
+	if err != nil {
+		return nil, err
 	}
 
-	// TODO: Actually fileSize is larger then buf size
-	buf := make([]byte, fileSize)
-	n, err = compress.Uncompress(buf, filePath)
+	fmt.Sscanf(fmt.Sprintf("%s", buf), "%s %d", &o.flag, &o.size)
+	nf := len(fmt.Sprintf("%s %d\x00", o.flag, o.size))
 
-	flag, size := "", 0
-	fmt.Sscanf(fmt.Sprintf("%s", buf), "%s %d", &flag, &size)
-	nf := len(fmt.Sprintf("%s %d\x00", flag, size))
-
-	o.flag = flag
-	copy(b, buf[nf:n])
-
-	return n, err
+	return buf[nf:], err
 }
 
 func BytesToSha1(bytes [20]byte) (sha1 string) {
