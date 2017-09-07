@@ -1,19 +1,13 @@
 GOBUILD=go build
 
 BIN=bin
-EXE=init add cat-file
+EXE=dit
 PKG_SRC=github.com/zddhub/dit
 
 all : $(EXE)
 
-init: main/init.go dit/repository.go dit/dit.go
-	$(GOBUILD) -o $(BIN)/init $<
-
-add: main/add.go dit/blob.go
-	$(GOBUILD) -o $(BIN)/add $<
-
-cat-file: main/cat_file.go dit/repository.go dit/dit.go
-	$(GOBUILD) -o $(BIN)/cat-file $<
+dit: main.go
+	$(GOBUILD) -o $(BIN)/dit $<
 
 clean:
 	rm -rf $(BIN)
