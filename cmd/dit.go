@@ -11,8 +11,9 @@ var cfgFile string
 
 // ditCmd represents the base command when called without any subcommands
 var ditCmd = &cobra.Command{
-	Use:  "dit",
-	Long: "usage: dit [--help] <command> [<args>]",
+	Use:   "dit",
+	Short: "dit - the stupid content tracker like git",
+	Long:  "usage: dit [--help] <command> [<args>]",
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
@@ -27,12 +28,13 @@ func Execute() {
 	}
 }
 
-const usageTemplate = `dit - the stupid content tracker like git
+const usageTemplate = `{{.Short}}
 
 {{if .HasAvailableSubCommands}}These are common Dit commands used in various situations:{{range .Commands}}{{if (or .IsAvailableCommand (eq .Name "help"))}}
-  {{rpad .Name .NamePadding }} {{.Short}}{{end}}{{end}}{{end}}
+  {{rpad .Name .NamePadding }} {{.Short}}{{end}}{{end}}{{else}}{{if .HasAvailableLocalFlags}}Options: 
+{{.LocalFlags.FlagUsages | trimTrailingWhitespaces}}{{end}}{{end}}
 
-See 'git help <command>' to read about a specific subcommand.
+See 'dit help <command>' to read about a specific subcommand.
 `
 
 func init() {
