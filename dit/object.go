@@ -8,8 +8,16 @@ import (
 
 type object struct {
 	sha1 [20]byte
-	flag string // object category: object, blob, tree, commit, tag
+	flag string // object type: object, blob, tree, commit, tag
 	size int
+}
+
+func (o *object) Type() string {
+	return o.flag
+}
+
+func (o *object) Size() int {
+	return o.size
 }
 
 func (o *object) Sha1String() string {

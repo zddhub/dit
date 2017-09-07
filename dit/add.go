@@ -8,7 +8,7 @@ import (
 const EmptyFileMessage = `Nothing specified, nothing added.
 Maybe you wanted to say 'git add .'?`
 
-func (repo *repository) AddFiles(files ...string) {
+func (repo *repository) AddFiles(files []string) {
 	if len(files) == 0 {
 		LogT.Println(EmptyFileMessage)
 		return
