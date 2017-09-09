@@ -7,7 +7,7 @@ import (
 )
 
 type object struct {
-	sha1 [20]byte
+	sha1 string
 	flag string // object type: object, blob, tree, commit, tag
 	size int
 }
@@ -21,18 +21,16 @@ func (o *object) Size() int {
 }
 
 func (o *object) Sha1String() string {
-	return BytesToSha1(o.sha1)
+	return o.sha1
 }
 
 func (o *object) Write(p []byte) (n int, err error) {
 	header := []byte(fmt.Sprintf("%s %d\x00", o.flag, len(p)))
 	data := append(header, p...)
 
-	o.sha1 = hash.MemHashToBytes(data)
+	o.sha1 = BytesToSha1(hash.MemHashToBytes(data))
 
-	sha1String := o.Sha1String()
-
-	filePath := DIT["objects"] + "/" + sha1String[0:2] + "/" + sha1String[2:]
+	filePath := DIT["objects"] + "/" + o.sha1[0:2] + "/" + o.sha1[2:]
 
 	return compress.Compress(filePath, data)
 }
