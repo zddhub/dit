@@ -59,6 +59,9 @@ func BytesToSha1(bytes [20]byte) (sha1 string) {
 
 func Sha1ToBytes(sha1 string) (bytes [20]byte) {
 	for i := range bytes {
+		if 2*i+1 >= len(sha1) {
+			break
+		}
 		bytes[i] = htob(sha1[2*i])*16 + htob(sha1[2*i+1])
 	}
 	return bytes

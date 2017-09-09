@@ -17,7 +17,7 @@ func Compress(path string, data []byte) (int, error) {
 
 	file, err := os.Create(path)
 	if err != nil {
-		LogE.Fatalln(err)
+		LogE.Println(err)
 		return 0, err
 	}
 	defer file.Close()
@@ -32,14 +32,14 @@ func Compress(path string, data []byte) (int, error) {
 func Decompress(path string) ([]byte, error) {
 	file, err := os.Open(path)
 	if err != nil {
-		LogE.Fatalln(err)
+		LogE.Println(err)
 		return nil, err
 	}
 	defer file.Close()
 
 	r, err := zlib.NewReader(file)
 	if err != nil {
-		LogE.Fatalln("Read file error!")
+		LogE.Println(err)
 		return nil, err
 	}
 	defer r.Close()

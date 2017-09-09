@@ -21,7 +21,12 @@ var catFileCmd = &cobra.Command{
 		}
 
 		repo := NewRepository()
-		object, content, _ := repo.CatFile(args[0])
+		object, content, err := repo.CatFile(args[0])
+
+		if err != nil {
+			fmt.Println("fatal: Not a valid object name", args[0])
+			return
+		}
 
 		if objectType {
 			fmt.Println(object.Type())
