@@ -16,6 +16,10 @@ func NewRepository() *repository {
 }
 
 func LoadRepository() *repository {
+	if !checkRepositoryExist() {
+		LogT.Fatalln("fatal: Not a dit repository (or any of the parent directories):", DIT_REPO)
+		return nil
+	}
 	var index cache
 	index.loadCache(DIT["index"])
 	return &repository{isInitialized: true, index: index}
@@ -30,7 +34,7 @@ type repository struct {
 func (r *repository) Init() {
 	absRepoDir, err := filepath.Abs(DIT["dir"])
 
-	if err == nil && isExist(DIT["HEAD"]) {
+	if err == nil && checkRepositoryExist() {
 		r.isInitialized = true
 		LogT.Println("Reinitialized empty Dit repository in", absRepoDir)
 		return
@@ -51,6 +55,10 @@ func (r *repository) StoreCache() {
 	if err := r.index.storeCache(DIT["index"]); err != nil {
 		LogE.Println(err)
 	}
+}
+
+func checkRepositoryExist() bool {
+	return isExist(DIT["HEAD"])
 }
 
 // true if file exists

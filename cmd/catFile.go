@@ -20,7 +20,7 @@ var catFileCmd = &cobra.Command{
 			return
 		}
 
-		repo := NewRepository()
+		repo := LoadRepository()
 		object, content, err := repo.CatFile(args[0])
 
 		if err != nil {
