@@ -1,32 +1,14 @@
 package utils
 
 import (
-	"fmt"
+	"io/ioutil"
 	"os"
 )
 
-func ReadFile(path string) (buffer []byte, err error) {
-	fileInfo, err := os.Stat(path)
-	if err != nil && !os.IsExist(err) {
-		LogE.Println(err)
-		return nil, err
-	}
+func ReadFile(filename string) (buffer []byte, err error) {
+	return ioutil.ReadFile(filename)
+}
 
-	if fileInfo.IsDir() {
-		return nil, fmt.Errorf("file: %s is directory", path)
-	}
-
-	file, err := os.Open(path)
-	if err != nil {
-		LogE.Println(err)
-		return nil, err
-	}
-	defer file.Close()
-
-	buffer = make([]byte, fileInfo.Size())
-	if n, err := file.Read(buffer); err != nil || int64(n) != fileInfo.Size() {
-		LogE.Fatalln(err)
-		return nil, err
-	}
-	return buffer, nil
+func WriteFile(filename string, data []byte, perm os.FileMode) error {
+	return ioutil.WriteFile(filename, data, perm)
 }
