@@ -41,6 +41,12 @@ func (r *repository) Init() {
 	LogT.Println("Initialized empty Dit repository in", absRepoDir)
 }
 
+func (r *repository) StoreCache() {
+	if err := index.storeCache(DIT["index"]); err != nil {
+		LogE.Println(err)
+	}
+}
+
 // true if file exists
 func isExist(path string) bool {
 	_, err := os.Stat(path)

@@ -29,11 +29,11 @@ var catFileCmd = &cobra.Command{
 		}
 
 		if objectType {
-			fmt.Println(object.Type())
+			fmt.Println(object.Type)
 		}
 
 		if objectSize {
-			fmt.Println(object.Size())
+			fmt.Println(object.Size)
 		}
 
 		if objectContent {

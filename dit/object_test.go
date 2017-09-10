@@ -13,7 +13,7 @@ var (
 
 func TestWriteAndReadObject(t *testing.T) {
 	data := []byte("dit\n")
-	object := object{flag: "blob"}
+	object := object{Type: "blob"}
 	object.Write(data)
 
 	if object.Sha1String() != Sha1String {
@@ -26,12 +26,12 @@ func TestWriteAndReadObject(t *testing.T) {
 	}
 
 	// Read
-	object.flag = ""
-	object.size = 0
+	object.Type = ""
+	object.Size = 0
 
 	buffer, err := object.ReadAll()
 
-	if err != nil || object.flag != "blob" || object.size != 4 {
+	if err != nil || object.Type != "blob" || object.Size != 4 {
 		t.Error("read object info error: ", err)
 	}
 

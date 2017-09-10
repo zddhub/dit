@@ -16,6 +16,8 @@ var (
 	DIT map[string]string
 )
 
+var index cache
+
 func init() {
 	if DIT_PATH == "" {
 		DIT_PATH = DEFAULT_DIT_PATH
@@ -25,6 +27,8 @@ func init() {
 	}
 
 	setDitEnv()
+
+	index.loadCache(DIT["index"])
 }
 
 func setDitEnv() {
@@ -33,6 +37,7 @@ func setDitEnv() {
 		"objects": GetSubPath("objects"),
 		"refs":    GetSubPath("refs"),
 		"HEAD":    GetSubPath("HEAD"),
+		"index":   GetSubPath("index"),
 	}
 }
 

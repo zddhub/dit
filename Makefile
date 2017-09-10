@@ -1,13 +1,16 @@
 GOBUILD=go build
 
 BIN=bin
-EXE=dit
+EXE=dit parse-index
 PKG_SRC=github.com/zddhub/dit
 
 all : $(EXE)
 
 dit: main.go
 	$(GOBUILD) -o $(BIN)/dit $<
+
+parse-index: main/parse-index.go
+	$(GOBUILD) -o $(BIN)/parse-index $<
 
 clean:
 	rm -rf $(BIN)

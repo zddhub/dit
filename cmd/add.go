@@ -12,6 +12,7 @@ var addCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		repo := NewRepository()
 		repo.AddFiles(args)
+		repo.StoreCache()
 	},
 }
 

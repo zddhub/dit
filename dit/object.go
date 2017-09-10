@@ -7,46 +7,37 @@ import (
 )
 
 type object struct {
-	sha1 string
-	flag string // object type: object, blob, tree, commit, tag
-	size int
+	Sha1 string
+	Type string // object type: object, blob, tree, commit, tag
+	Size int
 }
 
-func (o *object) Type() string {
-	return o.flag
+func (obj *object) Sha1String() string {
+	return obj.Sha1
 }
 
-func (o *object) Size() int {
-	return o.size
-}
-
-func (o *object) Sha1String() string {
-	return o.sha1
-}
-
-func (o *object) Write(p []byte) (n int, err error) {
-	header := []byte(fmt.Sprintf("%s %d\x00", o.flag, len(p)))
+func (obj *object) Write(p []byte) (n int, err error) {
+	header := []byte(fmt.Sprintf("%s %d\x00", obj.Type, len(p)))
 	data := append(header, p...)
 
-	o.sha1 = BytesToSha1(hash.MemHashToBytes(data))
+	obj.Sha1 = BytesToSha1(hash.MemHashToBytes(data))
+	obj.Size = len(p)
 
-	filePath := DIT["objects"] + "/" + o.sha1[0:2] + "/" + o.sha1[2:]
+	filePath := DIT["objects"] + "/" + obj.Sha1[0:2] + "/" + obj.Sha1[2:]
 
 	return compress.Compress(filePath, data)
 }
 
-func (o *object) ReadAll() ([]byte, error) {
-	sha1String := o.Sha1String()
-
-	filePath := DIT["objects"] + "/" + sha1String[0:2] + "/" + sha1String[2:]
+func (obj *object) ReadAll() ([]byte, error) {
+	filePath := DIT["objects"] + "/" + obj.Sha1[0:2] + "/" + obj.Sha1[2:]
 
 	buf, err := compress.Decompress(filePath)
 	if err != nil {
 		return nil, err
 	}
 
-	fmt.Sscanf(fmt.Sprintf("%s", buf), "%s %d", &o.flag, &o.size)
-	nf := len(fmt.Sprintf("%s %d\x00", o.flag, o.size))
+	fmt.Sscanf(fmt.Sprintf("%s", buf), "%s %d", &obj.Type, &obj.Size)
+	nf := len(fmt.Sprintf("%s %d\x00", obj.Type, obj.Size))
 
 	return buf[nf:], err
 }
