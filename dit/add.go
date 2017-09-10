@@ -16,7 +16,7 @@ func (repo *repository) AddFiles(files []string) {
 
 	for _, file := range files {
 		obj, _ := addFileToObjects(file)
-		index.Entries = append(index.Entries, obj)
+		repo.index.Entries = append(repo.index.Entries, obj)
 	}
 }
 

@@ -12,13 +12,19 @@ type Repository interface {
 }
 
 func NewRepository() *repository {
-	repo := &repository{isInitialized: false}
-	return repo
+	return &repository{isInitialized: false}
+}
+
+func LoadRepository() *repository {
+	var index cache
+	index.loadCache(DIT["index"])
+	return &repository{isInitialized: true, index: index}
 }
 
 // dit repository
 type repository struct {
 	isInitialized bool
+	index         cache
 }
 
 func (r *repository) Init() {
@@ -42,7 +48,7 @@ func (r *repository) Init() {
 }
 
 func (r *repository) StoreCache() {
-	if err := index.storeCache(DIT["index"]); err != nil {
+	if err := r.index.storeCache(DIT["index"]); err != nil {
 		LogE.Println(err)
 	}
 }
