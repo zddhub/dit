@@ -57,6 +57,21 @@ func (r *repository) StoreCache() {
 	}
 }
 
+func (r *repository) AddCacheEntry(obj *object) {
+	if !r.includes(obj) {
+		r.index.Entries = append(r.index.Entries, obj)
+	}
+}
+
+func (r *repository) includes(obj *object) bool {
+	for _, entry := range r.index.Entries {
+		if obj.Sha1 == entry.Sha1 {
+			return true
+		}
+	}
+	return false
+}
+
 func checkRepositoryExist() bool {
 	return isExist(DIT["HEAD"])
 }

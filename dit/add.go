@@ -16,7 +16,7 @@ func (repo *repository) AddFiles(files []string) {
 
 	for _, file := range files {
 		obj, _ := addFileToObjects(file)
-		repo.index.Entries = append(repo.index.Entries, obj)
+		repo.AddCacheEntry(obj)
 	}
 }
 
@@ -26,7 +26,7 @@ func addFileToObjects(filePath string) (obj *object, err error) {
 		return nil, err
 	}
 
-	object := &object{Type: "blob"}
+	object := &object{Type: "blob", Path: filePath}
 	object.Write(buffer)
 	return object, err
 }

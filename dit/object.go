@@ -10,6 +10,7 @@ type object struct {
 	Sha1 string
 	Type string // object type: object, blob, tree, commit, tag
 	Size int
+	Path string
 }
 
 func (obj *object) Sha1String() string {
