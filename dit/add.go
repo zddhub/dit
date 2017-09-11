@@ -1,7 +1,6 @@
 package dit
 
 import (
-	_ "fmt"
 	. "github.com/zddhub/dit/utils"
 )
 
@@ -20,13 +19,14 @@ func (repo *repository) AddFiles(files []string) {
 	}
 }
 
-func addFileToObjects(filePath string) (obj *object, err error) {
-	buffer, err := ReadFile(filePath)
+func addFileToObjects(filename string) (obj *object, err error) {
+	buffer, err := ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
 
-	object := &object{Type: "blob", Path: filePath}
+	mode, _ := FileMode(filename)
+	object := &object{Type: "blob", Mode: mode, Path: filename}
 	object.Write(buffer)
 	return object, err
 }

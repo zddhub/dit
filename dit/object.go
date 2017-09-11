@@ -2,6 +2,7 @@ package dit
 
 import (
 	"fmt"
+
 	"github.com/zddhub/dit/compress"
 	"github.com/zddhub/dit/hash"
 )
@@ -10,6 +11,7 @@ type object struct {
 	Sha1 string
 	Type string // object type: object, blob, tree, commit, tag
 	Size int
+	Mode string
 	Path string
 }
 

@@ -34,6 +34,7 @@ func (c *cache) loadCache(filename string) {
 func (c *cache) storeCache(filename string) error {
 	c.sort()
 	buffer, err := json.MarshalIndent(*c, "", "  ")
+
 	if err != nil {
 		LogD.Println(err)
 		return err

@@ -58,18 +58,20 @@ func (r *repository) StoreCache() {
 }
 
 func (r *repository) AddCacheEntry(obj *object) {
-	if !r.includes(obj) {
+	if yes, i := r.includes(obj); yes {
+		r.index.Entries[i] = obj
+	} else {
 		r.index.Entries = append(r.index.Entries, obj)
 	}
 }
 
-func (r *repository) includes(obj *object) bool {
-	for _, entry := range r.index.Entries {
+func (r *repository) includes(obj *object) (bool, int) {
+	for i, entry := range r.index.Entries {
 		if obj.Sha1 == entry.Sha1 {
-			return true
+			return true, i
 		}
 	}
-	return false
+	return false, 0
 }
 
 func checkRepositoryExist() bool {
