@@ -19,6 +19,10 @@ func (obj *object) Sha1String() string {
 	return obj.Sha1
 }
 
+func (obj *object) String() string {
+	return fmt.Sprintf("%s %s %s\t%s", obj.Mode, obj.Type, obj.Sha1, obj.Path)
+}
+
 func (obj *object) Write(p []byte) (n int, err error) {
 	header := []byte(fmt.Sprintf("%s %d\x00", obj.Type, len(p)))
 	data := append(header, p...)
