@@ -31,7 +31,7 @@ func init() {
 	user = userInfo{"zdd", "zddhub@gmail.com", time.Now()}
 }
 
-func (c *commit) Save() {
+func (c commit) Content() []byte {
 	var b bytes.Buffer
 	var content string
 	content += fmt.Sprintf("tree %s\n", c.tree.Sha1String())
@@ -41,18 +41,19 @@ func (c *commit) Save() {
 	LogI.Println(content)
 
 	b.Write([]byte(content))
-	c.Write(b.Bytes())
+	return b.Bytes()
 }
 
 func (user userInfo) String() string {
 	zone := strings.Split(user.timestamp.Local().String(), " ")[2]
-	return fmt.Sprintf("%s %s %d %s", user.name, user.email, user.timestamp.Unix(), zone)
+	return fmt.Sprintf("%s <%s> %d %s", user.name, user.email, user.timestamp.Unix(), zone)
 }
 
 func (repo *repository) Commit(message string) {
 	tree := repo.NewTree()
+	tree.Write(tree.Content())
 
 	user.timestamp = time.Now()
 	commit := &commit{object{Type: "commit"}, tree, nil, message, user, user}
-	commit.Save()
+	commit.Write(commit.Content())
 }
