@@ -5,6 +5,7 @@ import (
 
 	"github.com/zddhub/dit/compress"
 	"github.com/zddhub/dit/hash"
+	. "github.com/zddhub/dit/utils"
 )
 
 type object struct {
@@ -32,6 +33,9 @@ func (obj *object) Write(p []byte) (n int, err error) {
 
 	filePath := DIT["objects"] + "/" + obj.Sha1[0:2] + "/" + obj.Sha1[2:]
 
+	if IsExist(filePath) {
+		return 0, nil
+	}
 	return compress.Compress(filePath, data)
 }
 

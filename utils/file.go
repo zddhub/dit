@@ -27,3 +27,12 @@ func FileMode(filename string) (string, error) {
 		return fmt.Sprintf("%o", uint32(fileInfo.Mode().Perm())|Regular), nil
 	}
 }
+
+// true if file exists
+func IsExist(path string) bool {
+	_, err := os.Stat(path)
+	if err != nil && !os.IsExist(err) {
+		return false
+	}
+	return true
+}

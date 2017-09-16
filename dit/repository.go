@@ -75,16 +75,7 @@ func (r *repository) includes(obj *object) (bool, int) {
 }
 
 func checkRepositoryExist() bool {
-	return isExist(DIT["HEAD"])
-}
-
-// true if file exists
-func isExist(path string) bool {
-	_, err := os.Stat(path)
-	if err != nil && !os.IsExist(err) {
-		return false
-	}
-	return true
+	return IsExist(DIT["HEAD"])
 }
 
 // create file, if no directory, create directory
