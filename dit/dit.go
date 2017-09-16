@@ -29,11 +29,12 @@ func init() {
 
 func setDitEnv() {
 	DIT = map[string]string{
-		"dir":     GetRepoPath(),
-		"objects": GetSubPath("objects"),
-		"refs":    GetSubPath("refs"),
-		"HEAD":    GetSubPath("HEAD"),
-		"index":   GetSubPath("index"),
+		"dir":        GetRepoPath(),
+		"objects":    GetSubPath("objects"),
+		"refs":       GetSubPath("refs"),
+		"refs/heads": GetSubPath("refs/heads"),
+		"HEAD":       GetSubPath("HEAD"),
+		"index":      GetSubPath("index"),
 	}
 }
 

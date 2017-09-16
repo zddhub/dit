@@ -1,9 +1,11 @@
 package dit
 
 import (
-	. "github.com/zddhub/dit/utils"
 	"os"
 	"path/filepath"
+	"strings"
+
+	. "github.com/zddhub/dit/utils"
 )
 
 type Repository interface {
@@ -22,13 +24,18 @@ func LoadRepository() *repository {
 	}
 	var index cache
 	index.loadCache(DIT["index"])
-	return &repository{isInitialized: true, index: index}
+
+	repo := &repository{true, index, Branch(), Head()}
+	LogI.Println(*repo)
+	return repo
 }
 
 // dit repository
 type repository struct {
 	isInitialized bool
 	index         cache
+	branch        string
+	head          string
 }
 
 func (r *repository) Init() {
@@ -47,7 +54,7 @@ func (r *repository) Init() {
 		LogE.Fatalln(err)
 	}
 	defer file.Close()
-	file.Write([]byte("ref: refs/heads/master"))
+	file.Write([]byte("ref: refs/heads/master\n"))
 	LogT.Println("Initialized empty Dit repository in", absRepoDir)
 }
 
@@ -72,6 +79,25 @@ func (r *repository) includes(obj *object) (bool, int) {
 		}
 	}
 	return false, 0
+}
+
+func Branch() string {
+	head, _ := ReadFile(DIT["HEAD"])
+	branch := strings.Join(strings.Split(string(head), "/")[2:], "/")
+	return strings.Trim(branch, "\n")
+}
+
+func Head() string {
+	head, _ := ReadFile(DIT["HEAD"])
+	branch := strings.Split(string(head), " ")[1]
+	sha1, _ := ReadFile(DIT["dir"] + "/" + branch)
+	return strings.Trim(string(sha1), "\n")
+}
+
+func (r repository) WriteHead(sha1 string) {
+	if err := WriteFile(DIT["refs/heads"]+"/"+r.branch, []byte(sha1+"\n"), 0644); err != nil {
+		LogE.Println(err)
+	}
 }
 
 func checkRepositoryExist() bool {
