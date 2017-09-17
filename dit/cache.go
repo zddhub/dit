@@ -2,8 +2,9 @@ package dit
 
 import (
 	"encoding/json"
-	. "github.com/zddhub/dit/utils"
 	"sort"
+
+	. "github.com/zddhub/dit/utils"
 )
 
 type entries []*object
@@ -13,19 +14,7 @@ type cache struct {
 	Signature  string
 	Version    int
 	Entries    entries
-	Extensions extensions
-}
-
-type cachedTreeEntry struct {
-	Dirname       string
-	Sha1          string
-	ObjectsCount  int
-	SubTreesCount int
-}
-
-type cachedTree struct {
-	Signature string
-	Entries   []*cachedTreeEntry
+	Extensions extensions // cachedTree
 }
 
 func (c *cache) loadCache(filename string) {
@@ -46,7 +35,7 @@ func (c *cache) loadCache(filename string) {
 }
 
 func (c *cache) storeCache(filename string) error {
-	c.sort()
+	sort.Sort(c.Entries)
 	buffer, err := json.MarshalIndent(*c, "", "  ")
 
 	if err != nil {
@@ -58,11 +47,13 @@ func (c *cache) storeCache(filename string) error {
 	return WriteFile(filename, buffer, 0644)
 }
 
-func (c *cache) sort() {
-	if len(c.Entries) < 2 {
-		return
+func (c cache) includes(obj *object) (bool, int) {
+	for i, entry := range c.Entries {
+		if obj.Sha1 == entry.Sha1 {
+			return true, i
+		}
 	}
-	sort.Sort(c.Entries)
+	return false, 0
 }
 
 func (e entries) Len() int           { return len(e) }

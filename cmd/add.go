@@ -11,8 +11,7 @@ var addCmd = &cobra.Command{
 	Short: "Add file contents to the index",
 	Run: func(cmd *cobra.Command, args []string) {
 		repo := LoadRepository()
-		repo.AddFiles(args)
-		repo.StoreCache()
+		repo.Add(args)
 	},
 }
 

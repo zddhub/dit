@@ -16,11 +16,7 @@ type object struct {
 	Path string
 }
 
-func (obj *object) Sha1String() string {
-	return obj.Sha1
-}
-
-func (obj *object) String() string {
+func (obj object) String() string {
 	return fmt.Sprintf("%s %s %s\t%s", obj.Mode, obj.Type, obj.Sha1, obj.Path)
 }
 
@@ -51,27 +47,4 @@ func (obj *object) ReadAll() ([]byte, error) {
 	nf := len(fmt.Sprintf("%s %d\x00", obj.Type, obj.Size))
 
 	return buf[nf:], err
-}
-
-func BytesToSha1(bytes [20]byte) (sha1 string) {
-	return fmt.Sprintf("%x", bytes)
-}
-
-func Sha1ToBytes(sha1 string) (bytes [20]byte) {
-	for i := range bytes {
-		if 2*i+1 >= len(sha1) {
-			break
-		}
-		bytes[i] = htob(sha1[2*i])*16 + htob(sha1[2*i+1])
-	}
-	return bytes
-}
-
-func htob(hex byte) (b byte) {
-	if hex <= '9' {
-		b = hex - '0'
-	} else {
-		b = hex - 'a' + 10
-	}
-	return b
 }

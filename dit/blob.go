@@ -1,5 +1,5 @@
 package dit
 
-type Blob struct {
+type blob struct {
 	object
 }

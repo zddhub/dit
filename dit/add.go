@@ -7,7 +7,8 @@ import (
 const EmptyFileMessage = `Nothing specified, nothing added.
 Maybe you wanted to say 'git add .'?`
 
-func (repo *repository) AddFiles(files []string) {
+func (repo *repository) Add(args []string) {
+	files := args
 	if len(files) == 0 {
 		LogT.Println(EmptyFileMessage)
 		return
@@ -18,6 +19,7 @@ func (repo *repository) AddFiles(files []string) {
 		repo.AddCacheEntry(obj)
 	}
 	repo.SetInvalidTreeCache()
+	repo.StoreCache()
 }
 
 func addFileToObjects(filename string) (obj *object, err error) {

@@ -5,23 +5,23 @@ import (
 )
 
 const (
-	DEFAULT_DIT_PATH = "."
-	DEFAULT_DIT_REPO = ".dit"
+	DefaultDitPath = "."
+	DefaultDitRepo = ".dit"
 )
 
 var (
-	DIT_PATH = os.Getenv("DIT_PATH")
-	DIT_REPO = os.Getenv("DIT_REPO")
+	DitPath = os.Getenv("DIT_PATH")
+	DitRepo = os.Getenv("DIT_REPO")
 
 	DIT map[string]string
 )
 
 func init() {
-	if DIT_PATH == "" {
-		DIT_PATH = DEFAULT_DIT_PATH
+	if DitPath == "" {
+		DitPath = DefaultDitPath
 	}
-	if DIT_REPO == "" {
-		DIT_REPO = DEFAULT_DIT_REPO
+	if DitRepo == "" {
+		DitRepo = DefaultDitRepo
 	}
 
 	setDitEnv()
@@ -39,7 +39,7 @@ func setDitEnv() {
 }
 
 func GetRepoPath() string {
-	return DIT_PATH + "/" + DIT_REPO
+	return DitPath + "/" + DitRepo
 }
 
 func GetSubPath(name string) string {
