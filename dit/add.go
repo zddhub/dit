@@ -17,6 +17,7 @@ func (repo *repository) AddFiles(files []string) {
 		obj, _ := addFileToObjects(file)
 		repo.AddCacheEntry(obj)
 	}
+	repo.SetInvalidTreeCache()
 }
 
 func addFileToObjects(filename string) (obj *object, err error) {

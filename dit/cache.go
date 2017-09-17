@@ -7,11 +7,25 @@ import (
 )
 
 type entries []*object
+type extensions interface{}
 
 type cache struct {
+	Signature  string
+	Version    int
+	Entries    entries
+	Extensions extensions
+}
+
+type cachedTreeEntry struct {
+	Dirname       string
+	Sha1          string
+	ObjectsCount  int
+	SubTreesCount int
+}
+
+type cachedTree struct {
 	Signature string
-	Version   int
-	Entries   entries
+	Entries   []*cachedTreeEntry
 }
 
 func (c *cache) loadCache(filename string) {
