@@ -5,24 +5,24 @@ import (
 	"path/filepath"
 	"strings"
 
-	. "github.com/zddhub/dit/utils"
+	utils "github.com/zddhub/dit/utils"
 )
 
-func Branch() string {
-	head, _ := ReadFile(DIT["HEAD"])
+func branch() string {
+	head, _ := utils.ReadFile(DIT["HEAD"])
 	branch := strings.Join(strings.Split(string(head), "/")[2:], "/")
 	return strings.Trim(branch, "\n")
 }
 
-func Head() string {
-	head, _ := ReadFile(DIT["HEAD"])
+func head() string {
+	head, _ := utils.ReadFile(DIT["HEAD"])
 	branch := strings.Split(string(head), " ")[1]
-	sha1, _ := ReadFile(DIT["dir"] + "/" + branch)
+	sha1, _ := utils.ReadFile(DIT["dir"] + "/" + branch)
 	return strings.Trim(string(sha1), "\n")
 }
 
 func checkRepositoryExist() bool {
-	return IsExist(DIT["HEAD"])
+	return utils.IsExist(DIT["HEAD"])
 }
 
 // create file, if no directory, create directory

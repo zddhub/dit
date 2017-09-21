@@ -3,7 +3,7 @@ package dit
 import (
 	"path/filepath"
 
-	. "github.com/zddhub/dit/utils"
+	utils "github.com/zddhub/dit/utils"
 )
 
 func (r *repository) Init() {
@@ -11,7 +11,7 @@ func (r *repository) Init() {
 
 	if err == nil && checkRepositoryExist() {
 		r.isInitialized = true
-		LogT.Println("Reinitialized empty Dit repository in", absRepoDir)
+		utils.LogT.Println("Reinitialized empty Dit repository in", absRepoDir)
 		return
 	}
 
@@ -19,10 +19,10 @@ func (r *repository) Init() {
 	createDir(DIT["refs"] + "/heads")
 	file, err := safeCreateFile(DIT["HEAD"])
 	if err != nil {
-		LogE.Fatalln(err)
+		utils.LogE.Fatalln(err)
 	}
 	defer file.Close()
 	file.Write([]byte("ref: refs/heads/master\n"))
-	LogT.Println("Initialized empty Dit repository in", absRepoDir)
+	utils.LogT.Println("Initialized empty Dit repository in", absRepoDir)
 	r.isInitialized = true
 }

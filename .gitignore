@@ -5,3 +5,4 @@ bin
 pkg
 .tags
 tags
+.vscode

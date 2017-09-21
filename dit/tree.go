@@ -3,7 +3,7 @@ package dit
 import (
 	"bytes"
 
-	. "github.com/zddhub/dit/utils"
+	utils "github.com/zddhub/dit/utils"
 )
 
 type tree struct {
@@ -23,7 +23,7 @@ func (repo repository) NewTree() *tree {
 func (t tree) Content() []byte {
 	var b bytes.Buffer
 	for _, obj := range t.objects {
-		LogI.Println(obj.String())
+		utils.LogI.Println(obj.String())
 		b.Write([]byte(obj.String() + "\n"))
 	}
 	return b.Bytes()

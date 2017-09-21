@@ -1,16 +1,16 @@
 package dit
 
 import (
-	. "github.com/zddhub/dit/utils"
+	utils "github.com/zddhub/dit/utils"
 )
 
-const EmptyFileMessage = `Nothing specified, nothing added.
+const emptyFileMessage = `Nothing specified, nothing added.
 Maybe you wanted to say 'git add .'?`
 
 func (repo *repository) Add(args []string) {
 	files := args
 	if len(files) == 0 {
-		LogT.Println(EmptyFileMessage)
+		utils.LogT.Println(emptyFileMessage)
 		return
 	}
 
@@ -23,12 +23,12 @@ func (repo *repository) Add(args []string) {
 }
 
 func addFileToObjects(filename string) (obj *object, err error) {
-	buffer, err := ReadFile(filename)
+	buffer, err := utils.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
 
-	mode, _ := FileMode(filename)
+	mode, _ := utils.FileMode(filename)
 	object := &object{Type: "blob", Mode: mode, Path: filename}
 	object.Write(buffer)
 	return object, err

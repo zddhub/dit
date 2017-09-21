@@ -5,23 +5,27 @@ import (
 )
 
 const (
-	DefaultDitPath = "."
-	DefaultDitRepo = ".dit"
+	defaultDitPath = "."
+	defaultDitRepo = ".dit"
 )
 
 var (
+	// DitPath get DIT_PATH from env, default value is "."
 	DitPath = os.Getenv("DIT_PATH")
+
+	// DitRepo get DIT_REPO from env, default value is ".dit"
 	DitRepo = os.Getenv("DIT_REPO")
 
+	// DIT holds dit repo file system path
 	DIT map[string]string
 )
 
 func init() {
 	if DitPath == "" {
-		DitPath = DefaultDitPath
+		DitPath = defaultDitPath
 	}
 	if DitRepo == "" {
-		DitRepo = DefaultDitRepo
+		DitRepo = defaultDitRepo
 	}
 
 	setDitEnv()
@@ -29,19 +33,19 @@ func init() {
 
 func setDitEnv() {
 	DIT = map[string]string{
-		"dir":        GetRepoPath(),
-		"objects":    GetSubPath("objects"),
-		"refs":       GetSubPath("refs"),
-		"refs/heads": GetSubPath("refs/heads"),
-		"HEAD":       GetSubPath("HEAD"),
-		"index":      GetSubPath("index"),
+		"dir":        repoPath(),
+		"objects":    subPath("objects"),
+		"refs":       subPath("refs"),
+		"refs/heads": subPath("refs/heads"),
+		"HEAD":       subPath("HEAD"),
+		"index":      subPath("index"),
 	}
 }
 
-func GetRepoPath() string {
+func repoPath() string {
 	return DitPath + "/" + DitRepo
 }
 
-func GetSubPath(name string) string {
-	return GetRepoPath() + "/" + name
+func subPath(name string) string {
+	return repoPath() + "/" + name
 }
