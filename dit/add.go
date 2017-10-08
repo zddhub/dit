@@ -5,7 +5,7 @@ import (
 )
 
 const emptyFileMessage = `Nothing specified, nothing added.
-Maybe you wanted to say 'git add .'?`
+Maybe you wanted to say 'dit add .'?`
 
 func (repo *repository) Add(args []string) {
 	files := args
@@ -29,7 +29,7 @@ func addFileToObjects(filename string) (obj *object, err error) {
 	}
 
 	mode, _ := utils.FileMode(filename)
-	object := &object{Type: "blob", Mode: mode, Path: filename}
+	object := &blob{object{Type: "blob", Mode: mode, Path: filename}}
 	object.Write(buffer)
 	return object, err
 }
