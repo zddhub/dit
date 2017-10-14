@@ -2,10 +2,11 @@ package compress
 
 import (
 	"compress/zlib"
-	. "github.com/zddhub/dit/utils"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+
+	"github.com/zddhub/dit/golang/utils"
 )
 
 // Use Go default zlib implements, different with Git
@@ -17,7 +18,7 @@ func Compress(path string, data []byte) (int, error) {
 
 	file, err := os.Create(path)
 	if err != nil {
-		LogE.Println(err)
+		utils.LogE.Println(err)
 		return 0, err
 	}
 	defer file.Close()
@@ -32,14 +33,14 @@ func Compress(path string, data []byte) (int, error) {
 func Decompress(path string) ([]byte, error) {
 	file, err := os.Open(path)
 	if err != nil {
-		LogE.Println(err)
+		utils.LogE.Println(err)
 		return nil, err
 	}
 	defer file.Close()
 
 	r, err := zlib.NewReader(file)
 	if err != nil {
-		LogE.Println(err)
+		utils.LogE.Println(err)
 		return nil, err
 	}
 	defer r.Close()

@@ -3,7 +3,8 @@ package hash
 import (
 	"crypto/sha1"
 	"fmt"
-	. "github.com/zddhub/dit/utils"
+
+	"github.com/zddhub/dit/golang/utils"
 )
 
 const Size = 20
@@ -18,7 +19,7 @@ func MemHashToString(data []byte) string {
 }
 
 func FileHash(path string) (sha1 string, err error) {
-	buffer, err := ReadFile(path)
+	buffer, err := utils.ReadFile(path)
 	if err != nil {
 		return "", err
 	}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-	. "github.com/zddhub/dit/dit"
+	"github.com/zddhub/dit/golang/dit"
 )
 
 var message string
@@ -19,7 +19,7 @@ var commitCmd = &cobra.Command{
 			fmt.Println("Aborting commit due to empty commit message.")
 			return
 		}
-		repo := LoadRepository()
+		repo := dit.LoadRepository()
 		repo.Commit(message)
 	},
 }

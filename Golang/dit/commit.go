@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	utils "github.com/zddhub/dit/utils"
+	utils "github.com/zddhub/dit/golang/utils"
 )
 
 type commit struct {

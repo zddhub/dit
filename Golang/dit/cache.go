@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"sort"
 
-	utils "github.com/zddhub/dit/utils"
+	utils "github.com/zddhub/dit/golang/utils"
 )
 
 type entries []*object

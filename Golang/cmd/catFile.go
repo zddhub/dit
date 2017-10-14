@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/spf13/cobra"
-	. "github.com/zddhub/dit/dit"
+	"github.com/zddhub/dit/golang/dit"
 )
 
 var objectType, objectSize, objectContent bool
@@ -20,7 +20,7 @@ var catFileCmd = &cobra.Command{
 			return
 		}
 
-		repo := LoadRepository()
+		repo := dit.LoadRepository()
 		object, content, err := repo.CatFile(args[0])
 
 		if err != nil {

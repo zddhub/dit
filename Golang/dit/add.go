@@ -1,7 +1,7 @@
 package dit
 
 import (
-	utils "github.com/zddhub/dit/utils"
+	"github.com/zddhub/dit/golang/utils"
 )
 
 const emptyFileMessage = `Nothing specified, nothing added.
@@ -29,7 +29,7 @@ func addFileToObjects(filename string) (obj *object, err error) {
 	}
 
 	mode, _ := utils.FileMode(filename)
-	object := &blob{object{Type: "blob", Mode: mode, Path: filename}}
+	object := &object{Type: "blob", Mode: mode, Path: filename}
 	object.Write(buffer)
 	return object, err
 }
