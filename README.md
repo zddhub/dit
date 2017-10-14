@@ -1,4 +1,4 @@
-# <img height="90" src="logo.png">
+# <img height="90" alt="dit" src="logo.png">
 
 > Helping you practise a new programming language
 

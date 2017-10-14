@@ -1,6 +1,6 @@
 # Golang Dit Example
 
-Dit of golang version can be "self-hosting" now.
+Golang Dit can be "self-hosting" now.
 
 > [Go](https://golang.org/) is an open source programming language that makes it easy to build simple, reliable, and efficient software.
 
