@@ -16,8 +16,11 @@ We hope to provide a good project, Dit - the simple content tracker as Git does,
 * Learn more about Git.
 * More practice when come to learning a new programming language.
 
+## Examples
 
-# License
+- [Golang](golang)
+
+## License
 
 Everything in this repo is MIT License unless otherwise specified.
 
