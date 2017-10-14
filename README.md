@@ -8,7 +8,6 @@ It is difficult to master a language by practicing small examples from document 
 
 We hope to provide a good project, Dit - the simple content tracker as Git does, to get you off the ground and master a new programming language as quickly as possible.
 
-
 ## Origin
 
 * From the love of Git and worship of Linus.
@@ -19,6 +18,40 @@ We hope to provide a good project, Dit - the simple content tracker as Git does,
 ## Examples
 
 - [Golang](golang)
+
+# Dit - the simple content tracker as Git does
+
+## Minimal support commands
+
+Dit is the simple content tracker as Git does, the basical dit must support the below commands:
+
+| Command | Description |
+| --- | --- |
+| dit init | Create an empty Dit repository or reinitialize an existing one |
+| dit add | Add file contents to the index |
+| dit commit | Record changes to the repository |
+| dit log | Show commit logs |
+| dit checkout | Restore working tree files |
+| dit diff | Show changes between commits, commit and working tree, etc |
+| dit status | Show the working tree status |
+
+Dit only has master branch.
+
+## Dit repository
+
+Dit only implements minimal repository as below:
+
+```sh
+.dit/
+├── HEAD
+├── index
+├── objects
+└── refs
+    └── heads
+        └── master
+
+3 directories, 3 files
+```
 
 ## License
 
