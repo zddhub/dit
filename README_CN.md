@@ -1,4 +1,4 @@
-# ![dit](logo.png)
+# <img height="90" alt="dit" src="logo.png">
 
 > 帮助你练习一门新语言
 
@@ -6,7 +6,9 @@
 
 我们提供了一个好的项目 —— Dit 帮你练习掌握一门新语言。
 
-如果编程是一种武功，那么 Git 就是我心中的独孤九剑， Dit 是按照 Git 实现的小项目，读以下文章了解更多：
+## Blogs
+
+如果编程是一种武功，那么 Git 就是我心中的独孤九剑，Dit 是按照 Git 实现的小项目，阅读以下文章了解更多 Dit 信息：
 
 - [独孤九剑(0x00) - 我为什么要做 Dit](https://www.zddhub.com/fun/2015/07/31/why-i-make-dit.html)
 - [独孤九剑(0x01) - 总决](https://www.zddhub.com/fun/2015/08/01/dit-design.html)
