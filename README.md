@@ -19,9 +19,9 @@ We hope to provide a good project, Dit - the simple content tracker as Git does,
 
 - [Golang](golang)
 
-# Dit - the simple content tracker as Git does
+## Dit - the simple content tracker as Git does
 
-## Minimal support commands
+### Minimal support commands
 
 Dit is the simple content tracker as Git does, the basical dit must support the below commands:
 
@@ -37,7 +37,7 @@ Dit is the simple content tracker as Git does, the basical dit must support the 
 
 Dit only has master branch.
 
-## Dit repository
+### Dit repository
 
 Dit only implements minimal repository as below:
 
