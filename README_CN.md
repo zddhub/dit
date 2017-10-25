@@ -14,7 +14,7 @@
 
 Dit 试图总结编程中那些“不变”但重要的事情，并且在新学习一门语言时，做为练习项目。截至目前，Dit 被以下语言实现：
 
-- [Golang](golang)
+- [Golang](https://github.com/zddhub/dit/tree/golang)
 
 阅读以下文章了解更多 Dit 信息：
 
