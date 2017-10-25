@@ -1,0 +1,4 @@
+package: github.com/zddhub/dit/golang
+import:
+- package: github.com/spf13/cobra
+  version: v0.0.1
