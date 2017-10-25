@@ -1,9 +1,11 @@
+os: osx
+
 language: go
 go:
   - 1.9
 
 before_script:
-  - curl https://glide.sh/get | sh
+  - brew install glide
   - glide install
 
 script:
