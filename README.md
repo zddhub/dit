@@ -17,7 +17,7 @@ We hope to provide a good project, Dit - the simple content tracker as Git does,
 
 ## Examples
 
-- [Golang](golang)
+- [Golang](https://github.com/zddhub/dit/tree/golang)
 
 ## Dit - the simple content tracker as Git does
 
