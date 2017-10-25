@@ -10,6 +10,12 @@ The [Go programming language documentation](https://golang.org/doc/) is a great 
 
 ### Running
 
+Install [Glide(Vendor Package Management for Golang)](https://github.com/Masterminds/glide#install) first and install dependencies as below.
+
+```sh
+glide install
+```
+
 Compile the code use below command:
 
 ```sh
