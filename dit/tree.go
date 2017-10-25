@@ -3,7 +3,7 @@ package dit
 import (
 	"bytes"
 
-	"github.com/zddhub/dit/golang/utils"
+	"github.com/zddhub/dit/utils"
 )
 
 type tree struct {

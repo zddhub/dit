@@ -1,7 +1,7 @@
 package dit
 
 import (
-	"github.com/zddhub/dit/golang/utils"
+	"github.com/zddhub/dit/utils"
 )
 
 // NewRepository tries to init dit repo

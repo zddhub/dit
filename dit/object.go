@@ -3,9 +3,9 @@ package dit
 import (
 	"fmt"
 
-	"github.com/zddhub/dit/golang/compress"
-	"github.com/zddhub/dit/golang/hash"
-	"github.com/zddhub/dit/golang/utils"
+	"github.com/zddhub/dit/compress"
+	"github.com/zddhub/dit/hash"
+	"github.com/zddhub/dit/utils"
 )
 
 type object struct {

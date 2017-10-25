@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/zddhub/dit/golang/utils"
+	"github.com/zddhub/dit/utils"
 )
 
 // Use Go default zlib implements, different with Git

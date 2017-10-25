@@ -2,7 +2,7 @@ GOBUILD=go build
 
 BIN=bin
 EXE=dit parse-index
-PKG_SRC=github.com/zddhub/dit/golang
+PKG_SRC=github.com/zddhub/dit
 
 all : $(EXE)
 

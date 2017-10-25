@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/zddhub/dit/golang/cmd"
+	"github.com/zddhub/dit/cmd"
 )
 
 func main() {

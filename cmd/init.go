@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/zddhub/dit/golang/dit"
+	"github.com/zddhub/dit/dit"
 )
 
 // initCmd represents the init command

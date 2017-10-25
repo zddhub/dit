@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/zddhub/dit/golang/utils"
+	"github.com/zddhub/dit/utils"
 )
 
 func branch() string {

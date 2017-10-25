@@ -3,7 +3,7 @@ package dit
 import (
 	"time"
 
-	utils "github.com/zddhub/dit/golang/utils"
+	utils "github.com/zddhub/dit/utils"
 )
 
 func (repo *repository) Commit(message string) {

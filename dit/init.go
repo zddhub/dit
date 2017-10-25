@@ -3,7 +3,7 @@ package dit
 import (
 	"path/filepath"
 
-	utils "github.com/zddhub/dit/golang/utils"
+	utils "github.com/zddhub/dit/utils"
 )
 
 func (r *repository) Init() {
