@@ -5,6 +5,7 @@ go:
   - 1.9
 
 before_script:
+  - brew update
   - brew install glide
   - glide install
 

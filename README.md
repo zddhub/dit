@@ -1,4 +1,4 @@
-# Golang Dit Example
+# Golang Dit Example [![Build Status](https://travis-ci.org/zddhub/dit.svg?branch=golang)](https://travis-ci.org/zddhub/dit)
 
 Golang Dit can be "self-hosting" now.
 
