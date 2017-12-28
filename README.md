@@ -4,13 +4,13 @@
 
 [中文文档](README_CN.md)
 
-It is difficult to master a language by practicing small examples from document page, systematic practise is needed. 
+It is difficult to master a language by practising small examples from documentation page, systematic practice is needed.
 
-We hope to provide a good project, Dit - the simple content tracker as Git does, to get you off the ground and master a new programming language as quickly as possible.
+We hope to provide a good project, Dit - the simple content tracker as [Git](https://github.com/git/git) does, to get you off the ground and master a new programming language as quickly as possible.
 
 ## Origin
 
-* From the love of Git and worship of Linus.
+* From the love of Git and worship of [Linus](https://github.com/torvalds).
 * "Do it together", hope more guys participate in.
 * Learn more about Git.
 * More practice when come to learning a new programming language.
@@ -55,6 +55,6 @@ Dit only implements minimal repository as below:
 
 ## License
 
-Everything in this repo is MIT License unless otherwise specified.
+Everything in this repo is under MIT License unless otherwise specified.
 
-MIT © zddhub
+MIT © [zddhub](https://www.zddhub.com/)
