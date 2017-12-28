@@ -15,15 +15,17 @@ We hope to provide a good project, Dit - the simple content tracker as [Git](htt
 * Learn more about Git.
 * More practice when come to learning a new programming language.
 
-## Examples
+## Implemented version
+
+Dit has already been implemented by below programming languages:
 
 - [Golang](https://github.com/zddhub/dit/tree/golang)
 
-## Dit - the simple content tracker as Git does
+## Dit - The simple content tracker as Git does
 
 ### Minimal support commands
 
-Dit is the simple content tracker as Git does, the basical dit must support the below commands:
+Dit is a mini Git, the basical dit must support the below commands:
 
 | Command | Description |
 | --- | --- |
