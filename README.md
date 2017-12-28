@@ -55,6 +55,11 @@ Dit only implements minimal repository as below:
 3 directories, 3 files
 ```
 
+## Thanks
+
+* [Git](https://github.com/git/git)
+* [Pro Git](https://git-scm.com/book/en)
+
 ## License
 
 Everything in this repo is under MIT License unless otherwise specified.
