@@ -55,6 +55,43 @@ Dit only implements minimal repository as below:
 3 directories, 3 files
 ```
 
+### Dit objects
+
+Dit is a content-addressable filesystem. It has three objects: blob, tree and commit. Each object is named with a 40-character checksum hash and stored under `objects` folder. The subdirectory is named with the first 2 characters of the SHA-1, and the filename is the remaining 38 characters.
+
+Stored content includes `object type + size + \0 + actual content`, Dit compresses the content with `zlib`.
+
+Sha1 can be calculated like below:
+
+```sh
+# git
+$ echo dit | git hash-object --stdin
+8f2c96ad676d7423d2c319fffb78cfb87c78c3e2
+
+# shasum
+$ echo -e "blob 4\0dit" | shasum
+8f2c96ad676d7423d2c319fffb78cfb87c78c3e2  -
+
+# openssl sha1
+echo -e "blob 4\0dit" | openssl sha1
+(stdin)= 8f2c96ad676d7423d2c319fffb78cfb87c78c3e2
+
+# go
+fmt.Printf("%x\n", sha1.Sum([]byte("blob 4\x00dit\n")))
+```
+
+* blob
+
+![blob](https://www.zddhub.com/assets/images/2015-08-05/blob.png)
+
+* tree
+
+![tree](https://www.zddhub.com/assets/images/2015-08-05/tree.png)
+
+* commit
+
+![commit](https://www.zddhub.com/assets/images/2015-08-05/commit.png)
+
 ## Thanks
 
 * [Git](https://github.com/git/git)
