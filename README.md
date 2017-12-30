@@ -23,22 +23,6 @@ Dit has already been implemented by below programming languages:
 
 ## Dit - The simple content tracker as Git does
 
-### Minimal support commands
-
-Dit is a mini Git, the basical dit must support the below commands:
-
-| Command | Description |
-| --- | --- |
-| dit init | Create an empty Dit repository or reinitialize an existing one |
-| dit add | Add file contents to the index |
-| dit commit | Record changes to the repository |
-| dit log | Show commit logs |
-| dit checkout | Restore working tree files |
-| dit diff | Show changes between commits, commit and working tree, etc |
-| dit status | Show the working tree status |
-
-Dit only has master branch.
-
 ### Dit repository
 
 Dit only implements minimal repository as below:
@@ -73,7 +57,7 @@ $ echo -e "blob 4\0dit" | shasum
 8f2c96ad676d7423d2c319fffb78cfb87c78c3e2  -
 
 # openssl sha1
-echo -e "blob 4\0dit" | openssl sha1
+$ echo -e "blob 4\0dit" | openssl sha1
 (stdin)= 8f2c96ad676d7423d2c319fffb78cfb87c78c3e2
 
 # go
@@ -91,6 +75,22 @@ fmt.Printf("%x\n", sha1.Sum([]byte("blob 4\x00dit\n")))
 * commit
 
 ![commit](https://www.zddhub.com/assets/images/2015-08-05/commit.png)
+
+### Dit commands
+
+Dit is a mini Git, the basical dit must support the below commands:
+
+| Command | Description |
+| --- | --- |
+| dit init | Create an empty Dit repository or reinitialize an existing one |
+| dit add | Add file contents to the index |
+| dit commit | Record changes to the repository |
+| dit log | Show commit logs |
+| dit checkout | Restore working tree files |
+| dit diff | Show changes between commits, commit and working tree, etc |
+| dit status | Show the working tree status |
+
+Dit only has master branch.
 
 ## Thanks
 
