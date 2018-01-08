@@ -1,6 +1,6 @@
-# Golang Dit Example [![Build Status](https://travis-ci.org/zddhub/dit.svg?branch=golang)](https://travis-ci.org/zddhub/dit)
+# Dit Golang Version [![Build Status](https://travis-ci.org/zddhub/dit.svg?branch=golang)](https://travis-ci.org/zddhub/dit)
 
-Golang Dit can be "self-hosting" now.
+Golang for [Dit](https://github.com/zddhub/dit) can be "self-hosting" now.
 
 > [Go](https://golang.org/) is an open source programming language that makes it easy to build simple, reliable, and efficient software.
 
